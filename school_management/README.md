@@ -1,6 +1,6 @@
-<h3>SCHOOL MANAGEMENT APP</h3>
+<h3><b>SCHOOL MANAGEMENT APP</b></h3>
 
-<p>Built with Python and MySQL</p>
+<p><b>Built with Python and MySQL</b></p>
 
 <p>MySQL Database information</p>
 <ul>
@@ -25,6 +25,8 @@
         <li>FirstName</li>
         <li>Address</li>
         <li>Age</li>
-        <li>Subjects/li>
+        <li>Subjects</li>
     </ul>
 </ul>
+
+<p><b>Python Logic</b></p>
