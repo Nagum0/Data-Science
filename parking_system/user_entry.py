@@ -1,23 +1,24 @@
 import mysql.connector
 import tkinter as tk
-import ttkbootstrap as ttk
 import random
 
 """ USER WINDOW CLASS """
-class UserEntryWindow(ttk.Window):
-    def __init__(self, argDB: any, argCursor: any, title="Parking ticker purchase") -> None:
-        super().__init__(title=title, themename="darkly", size=(300, 300), resizable=(False, False))
+class UserEntryWindow(tk.Tk):
+    def __init__(self, argDB: any, argCursor: any) -> None:
+        super().__init__()
+        self.title = "Parking system"
+        self.geometry("300x300")
+        self.resizable(False, False)
 
         #Variables
         self.argDB = argDB
         self.argCursor = argCursor
 
-        self.getTicketLbl = ttk.Label(master=self, 
+        self.getTicketLbl = tk.Label(master=self, 
                                     text="TICKET", 
                                     font="Calibri 20 bold")
-        self.getTickerBtn = ttk.Button(master=self, 
-                                    text="Get ticket", 
-                                    bootstyle="primary", 
+        self.getTickerBtn = tk.Button(master=self, 
+                                    text="Get ticket",
                                     width=15, 
                                     command=self.getTicket)
 
