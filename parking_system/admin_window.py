@@ -55,7 +55,7 @@ class AdminWindow(tk.Tk):
         else:
             return int(ticket_time[0])
 
-    def calcFee(self) -> float:
+    def calcFee(self) -> tuple:
         self.admin_cursor.execute(
             str("UPDATE Tickets SET pay_time = CURRENT_TIME WHERE ticket_ID = %s AND charge = %s"), (self.getEntryValue(), "unpaid")
         )
@@ -73,9 +73,9 @@ class AdminWindow(tk.Tk):
             fee = (pay_time_hour - self.findTicketTimeHour()) * 1.5
 
         if fee == 1.5:
-            return 0.0
+            return (0.0, 1)
         else:
-            return fee
+            return (int(fee), int(fee/1.5))
 
 if __name__ == "__main__":
     admin_window = AdminWindow()
