@@ -44,7 +44,13 @@ class AdminWindow(tk.Tk):
 
     """ SQL FUNCTIONALITY """
     def sendFee(self) -> None:
-        print(self.calcFee())
+        info = self.calcFee()
+        #Update parking_time and fee
+        self.admin_cursor.execute(
+            str("UPDATE Tickets SET parking_time = %s, fee = %s WHERE ticket_ID = %s"),
+            (info[1], info[0], self.getEntryValue())
+        )
+        self.admin_DB.commit()
 
     def findTicketTimeHour(self) -> int:
         self.admin_cursor.execute(str("SELECT ticket_time FROM Tickets WHERE ticket_ID = %s"), (self.getEntryValue(), ))
@@ -56,6 +62,7 @@ class AdminWindow(tk.Tk):
             return int(ticket_time[0])
 
     def calcFee(self) -> tuple:
+        #Set pay_time
         self.admin_cursor.execute(
             str("UPDATE Tickets SET pay_time = CURRENT_TIME WHERE ticket_ID = %s AND charge = %s"), (self.getEntryValue(), "unpaid")
         )
