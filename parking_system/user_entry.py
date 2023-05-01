@@ -6,7 +6,7 @@ import random
 class UserEntryWindow(tk.Tk):
     def __init__(self, argDB: any, argCursor: any) -> None:
         super().__init__()
-        self.title = "Parking system"
+        self.title("Parking system - user entry")
         self.geometry("300x300")
         self.resizable(False, False)
 
