@@ -31,7 +31,7 @@ class AdminWindow(tk.Tk):
         self.id_label = tk.Label(self, text="Ticket ID")
         self.id_entry = tk.Entry(self, width=20)
         self.check_id_btn = tk.Button(self, text="Calculate Fee", command=self.sendFee)
-        self.show_fee_label = tk.Label(self, text="Fee: 10€")
+        self.show_fee_label = tk.Label(self, text="Fee: ?")
 
     def packWidgets(self) -> None:
         self.id_label.place(x=180, y=50)
@@ -51,6 +51,9 @@ class AdminWindow(tk.Tk):
             (info[1], info[0], self.getEntryValue())
         )
         self.admin_DB.commit()
+
+        #Change fee label
+        self.show_fee_label['text'] = f"Fee: {info[0]}€"
 
     def findTicketTimeHour(self) -> int:
         self.admin_cursor.execute(str("SELECT ticket_time FROM Tickets WHERE ticket_ID = %s"), (self.getEntryValue(), ))
